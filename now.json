@@ -1,9 +1,25 @@
 {
+  "name": "portfolio",
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@now/static-build"
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/now-builder",
+      "config": {
+        "serverFiles": ["middleware/**", "plugins/**", "lib/**", "package.json"]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/_nuxt/.+",
+      "headers": {
+        "cache-control": "s-maxage=31536000"
+      }
+    },
+    {
+      "src": "^/(.*)",
+      "dest": "/"
     }
   ]
 }
